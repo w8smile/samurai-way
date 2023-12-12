@@ -1,14 +1,11 @@
 import React from "react";
 
 
-const Header = () => {
+export const Header = () => {
     return (
-        <div>
-            <a href={'#s'}>Home</a> -
-            <a href={'#s'}>New feed</a> -
-            <a href={'#s'}>Messages</a> -
-        </div>
-    );
-}
+        <header className='header'>
+        <img src='https://logohistory.net/wp-content/uploads/2023/02/Batman-Logo-1946.png'/>
+        </header>
+    )
 
-export default Header;
+}
