@@ -4,9 +4,9 @@ import {Posts} from "./Post/Posts";
 
 export const MyPosts = () => {
     return (
-        <div>
+        <div className={s.content}>
             My post
-            <div>
+            <div >
                 <textarea></textarea>
                 <button>Add post</button>
                 <button>remove</button>

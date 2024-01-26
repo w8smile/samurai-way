@@ -1,0 +1,33 @@
+
+.dialogs {
+    display: grid;
+    grid-template-columns: 2fr 10fr;
+    padding: 10px;
+
+}
+
+.dialogsPadding {
+    margin-bottom: 10px;
+
+
+}
+
+.dialog {
+    color: greenyellow;
+    text-decoration: none;
+}
+
+.act {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.messages {
+    padding: 10px;
+}
+
+.message {
+    padding: 5px;
+    color: greenyellow;
+}
+

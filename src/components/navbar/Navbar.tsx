@@ -1,5 +1,6 @@
 import React from "react";
 import s from "./Navbar.module.css"
+import {NavLink} from "react-router-dom";
 
 // let s = {
 //     'nav': 'Navbar_nav__I2\+Ee',
@@ -8,11 +9,21 @@ import s from "./Navbar.module.css"
 export const Navbar = () => {
     return (
         <nav className={s.nav}>
-            <div className={s.item}><a>Profile</a></div>
-            <div className={`${s.item} ${s.active}`}><a>Messages</a></div>
-            <div className={s.item}><a>News</a></div>
-            <div className={s.item}><a>Music</a></div>
-            <div className={s.item}>Setting</div>
+            <div>
+                <NavLink to='/profile' className={link => link.isActive ? s.active : s.item}>Profile</NavLink>
+            </div>
+            <div>
+                <NavLink to='/dialogs' className={link => link.isActive ? s.active : s.item}>Messages</NavLink>
+            </div>
+            <div>
+                <NavLink to='/news' className={link => link.isActive ? s.active : s.item}>News</NavLink>
+            </div>
+            <div>
+                <NavLink to='/music' className={link => link.isActive ? s.active : s.item}>Music</NavLink>
+            </div>
+            <div>
+                <NavLink to='/setting' className={link => link.isActive ? s.active : s.item}>Setting</NavLink>
+            </div>
         </nav>
     )
 }
