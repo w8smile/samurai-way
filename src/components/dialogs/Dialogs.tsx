@@ -6,12 +6,23 @@ type DialogProps = {
     id: string
     name: string
 }
+
+type MessageProps = {
+    text: string
+}
 const Dialog = (props: DialogProps) => {
     return (
         <div className={s.dialogsPadding}>
             <NavLink to={'/dialogs/' + props.id} className={l=>l.isActive ?  s.act : s.dialog }>{props.name}</NavLink>
         </div>
     )
+}
+
+const Message = (props: MessageProps) => {
+    return (
+        <div className={s.message}>{props.text}</div>
+    )
+
 }
 
 export const Dialogs = () => {
@@ -26,9 +37,9 @@ export const Dialogs = () => {
                 <Dialog id={'6'} name={'STL'}/>
             </div>
             <div className={s.messages}>
-                <div className={s.message}>Hello people!</div>
-                <div className={s.message}>Nice to meet you!</div>
-                <div className={s.message}>Kri4ev forever</div>
+                <Message text={'Hello people'}/>
+                <Message text={'Nice to meet you!'}/>
+                <Message text={'Kri4ev forever'}/>
             </div>
 
         </div>
