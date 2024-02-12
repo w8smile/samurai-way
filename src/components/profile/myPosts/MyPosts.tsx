@@ -1,12 +1,18 @@
 import React from "react";
 import s from '../myPosts/myPosts.module.css'
-import {Posts} from "./Post/Posts";
+import {PostProps, Posts} from "./Post/Posts";
 
-export const MyPosts = () => {
-    let MessageData = [
-        {id: 1, message: "Hi, how are you?", likeCount: 12},
-        {id: 2, message: "It's my first post", likeCount: 777}
-    ]
+export type MyPostsProps = {
+    messagePostsData: PostProps []
+}
+
+export const MyPosts = (props: MyPostsProps) => {
+    // let MessagePostsData = [
+    //     {id: 1, message: "Hi, how are you?", likeCount: 12},
+    //     {id: 2, message: "It's my first post", likeCount: 777},
+    //     {id: 2, message: "It's my first post", likeCount: 7277}
+    // ]
+    // let messagesPosts = MessageData.map((el)=><Posts message={el.message} likeCount={el.likeCount}/>)
     return (
         <div  className={s.content + ' ' + s.myPostsBlock}>
             <div>
@@ -25,10 +31,7 @@ export const MyPosts = () => {
                 </div>
             </div>
             <div className={s.content}>
-                {/*<Posts message="Hi, how are you?" likeCount={33}/>*/}
-                {/*<Posts message="It's my first post" likeCount={55}/>*/}
-                <Posts message={MessageData[0].message} likeCount={MessageData[0].likeCount}/>
-                <Posts message={MessageData[1].message} likeCount={MessageData[13].likeCount}/>
+                {props.messagePostsData.map((el)=><Posts message={el.message} likeCount={el.likeCount}/>)}
             </div>
         </div>
     )
