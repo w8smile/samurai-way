@@ -8,7 +8,7 @@ export const Profile = (props: MyPostsProps) => {
     return (
         <div className={s.content}>
             <ProfileData/>
-            <MyPosts messagePostsData={props.messagePostsData}/>
+            <MyPosts addPost={props.addPost} postsData={props.postsData}/>
         </div>
     )
 }

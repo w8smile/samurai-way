@@ -22,7 +22,7 @@ export const Navbar = () => {
                 <NavLink to='/music' className={link => link.isActive ? s.active : s.item}>Music</NavLink>
             </div>
             <div>
-                <NavLink to='/setting' className={link => link.isActive ? s.active : s.item}>Setting</NavLink>
+                <NavLink to='/settings' className={link => link.isActive ? s.active : s.item}>Название хранится в Навлинк</NavLink>
             </div>
         </nav>
     )

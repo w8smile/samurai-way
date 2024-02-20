@@ -1,28 +1,30 @@
-import React from "react";
+import React, {useRef} from "react";
 import s from '../myPosts/myPosts.module.css'
 import {PostProps, Posts} from "./Post/Posts";
 
 export type MyPostsProps = {
-    messagePostsData: PostProps []
+    postsData: PostProps []
+    addPost: (postMessage : string )=> void
 }
 
 export const MyPosts = (props: MyPostsProps) => {
-    // let MessagePostsData = [
-    //     {id: 1, message: "Hi, how are you?", likeCount: 12},
-    //     {id: 2, message: "It's my first post", likeCount: 777},
-    //     {id: 2, message: "It's my first post", likeCount: 7277}
-    // ]
-    // let messagesPosts = MessageData.map((el)=><Posts message={el.message} likeCount={el.likeCount}/>)
+    let newPostEl = React.createRef<HTMLTextAreaElement>()
+    const addPostHandler = () => {
+        if (newPostEl.current) {
+            props.addPost(newPostEl.current.value)
+        }
+
+    }
     return (
         <div  className={s.content + ' ' + s.myPostsBlock}>
             <div>
                 My post
                 <div>
                     <div>
-                        <textarea></textarea>
+                        <textarea ref={newPostEl}></textarea>
                     </div>
                     <div>
-                        <button>Add post</button>
+                        <button onClick={addPostHandler}>Add post</button>
                     </div>
                     <div>
                         <button>remove</button>
@@ -30,8 +32,9 @@ export const MyPosts = (props: MyPostsProps) => {
 
                 </div>
             </div>
-            <div className={s.content}>
-                {props.messagePostsData.map((el)=><Posts message={el.message} likeCount={el.likeCount}/>)}
+            <div
+                className={s.content}>
+                {props.postsData.map((el)=><Posts id={el.id} message={el.message} likeCount={el.likeCount} />)}
             </div>
         </div>
     )

@@ -1,9 +1,9 @@
 import React from 'react';
 
-export const Settings = () => {
+export const Settings111 = () => {
     return (
         <div>
-            Settings
+            А это в компоненте
         </div>
     );
 };

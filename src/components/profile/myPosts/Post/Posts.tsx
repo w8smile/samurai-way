@@ -3,6 +3,7 @@ import s from './Posts.module.css'
 
 
 export type PostProps = {
+    id: number
     message: string
     likeCount: number
 }
