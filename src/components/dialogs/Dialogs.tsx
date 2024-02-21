@@ -7,12 +7,22 @@ import {Message, MessageProps} from "./Messages/MessagesDialog";
 type DialogsProps = {
     dialogsData: DialogProps []
     messageData: MessageProps []
+    addMessageDialog: (message: string)=>void
+    newDialogMessage: string
+    changeMessageDialog: (messageText: string)=>void
+
 }
 export const Dialogs = (props: DialogsProps) => {
-    const messageElement = useRef<HTMLTextAreaElement>(null)
+    const messageElement = React.createRef<HTMLTextAreaElement>()
     const addMessage = () => {
-        if (messageElement.current !== null){
-            alert(messageElement.current.value)
+        if (messageElement.current){
+            props.addMessageDialog(messageElement.current.value)
+        }
+    }
+    const onChangeHandler = () => {
+        if (messageElement.current){
+            props.changeMessageDialog(messageElement.current.value)
+
         }
     }
     return (
@@ -22,7 +32,9 @@ export const Dialogs = (props: DialogsProps) => {
             </div>
             <div className={s.messages}>{props.messageData.map((el) => <Message id={el.id} message={el.message} />)}</div>
             <button onClick={addMessage}>add message</button>
-            <textarea ref={messageElement}></textarea>
+            <textarea ref={messageElement}
+                      onChange={onChangeHandler}
+                      value={props.newDialogMessage}></textarea>
         </div>
     );
 };

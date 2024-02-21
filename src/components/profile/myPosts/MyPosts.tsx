@@ -1,17 +1,24 @@
-import React, {useRef} from "react";
+import React from "react";
 import s from '../myPosts/myPosts.module.css'
 import {PostProps, Posts} from "./Post/Posts";
 
 export type MyPostsProps = {
     postsData: PostProps []
     addPost: (postMessage : string )=> void
+    newPostText: string
+    updateNewText: (newText: string)=> void
 }
 
 export const MyPosts = (props: MyPostsProps) => {
     let newPostEl = React.createRef<HTMLTextAreaElement>()
     const addPostHandler = () => {
         if (newPostEl.current) {
-            props.addPost(newPostEl.current.value)
+            props.addPost(newPostEl.current.value);
+        }
+    }
+    const onChangeHandler = () => {
+        if(newPostEl.current) {
+            props.updateNewText(newPostEl.current.value)
         }
 
     }
@@ -21,7 +28,7 @@ export const MyPosts = (props: MyPostsProps) => {
                 My post
                 <div>
                     <div>
-                        <textarea ref={newPostEl}></textarea>
+                        <textarea onChange={onChangeHandler} ref={newPostEl} value={props.newPostText}></textarea>
                     </div>
                     <div>
                         <button onClick={addPostHandler}>Add post</button>
