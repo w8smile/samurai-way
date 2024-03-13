@@ -1,26 +1,23 @@
-import React from "react";
+import React, {ChangeEvent} from "react";
 import s from '../myPosts/myPosts.module.css'
 import {PostProps, Posts} from "./Post/Posts";
+import {DispatchType} from "../../../redux/store";
+import {addPostAC, changePostMessageAC} from "../../../redux/profile-reducer";
 
 export type MyPostsProps = {
     postsData: PostProps []
-    addPost: (postMessage : string )=> void
     newPostText: string
-    updateNewText: (newText: string)=> void
+    dispatch: (action: DispatchType)=> void
 }
 
-export const MyPosts = (props: MyPostsProps) => {
-    let newPostEl = React.createRef<HTMLTextAreaElement>()
-    const addPostHandler = () => {
-        if (newPostEl.current) {
-            props.addPost(newPostEl.current.value);
-        }
-    }
-    const onChangeHandler = () => {
-        if(newPostEl.current) {
-            props.updateNewText(newPostEl.current.value)
-        }
 
+export const MyPosts = (props: MyPostsProps) => {
+    const addPostHandler = () => {
+            // props.addPost(props.newPostText);
+            props.dispatch(addPostAC(props.newPostText))
+    }
+    const onChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
+        props.dispatch(changePostMessageAC(e.currentTarget.value))
     }
     return (
         <div  className={s.content + ' ' + s.myPostsBlock}>
@@ -28,7 +25,7 @@ export const MyPosts = (props: MyPostsProps) => {
                 My post
                 <div>
                     <div>
-                        <textarea onChange={onChangeHandler} ref={newPostEl} value={props.newPostText}></textarea>
+                        <textarea onChange={onChangeHandler} value={props.newPostText}></textarea>
                     </div>
                     <div>
                         <button onClick={addPostHandler}>Add post</button>

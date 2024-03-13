@@ -8,7 +8,7 @@ import { Route, Routes } from "react-router-dom";
 import Music from "./components/music/Music";
 import { News } from "./components/news/News";
 import { Settings111 } from "./components/settings/Settings";
-import { store, StoreType } from "./redux/state";
+import { store, StoreType } from "./redux/store";
 
 export type AppProps = {
     store: StoreType
@@ -23,27 +23,25 @@ const App = (props: AppProps) => {
                 <Routes>
                     <Route path='/' element={
                         <Profile
-                            addPost={props.store.addPost.bind(props.store)}
+                            dispatch={props.store.dispatch.bind(props.store)}
                             profilePage={store._state.profilePage}
                             newPostText={store._state.profilePage.newPostText}
-                            changeAddPost={props.store.changeAddPost.bind(props.store)}
                         />
                     } />
                     <Route path='/profile' element={
                         <Profile
-                            addPost={props.store.addPost.bind(props.store)}
+                            dispatch={props.store.dispatch.bind(props.store)}
                             profilePage={store._state.profilePage}
                             newPostText={store._state.profilePage.newPostText}
-                            changeAddPost={props.store.changeAddPost.bind(props.store)}
+
                         />
                     } />
                     <Route path='/dialogs/*' element={
                         <Dialogs
+                            dispatch = {props.store.dispatch.bind(props.store)}
                             dialogsData={store._state.dialogsPage.dialogsData}
                             messageData={store._state.dialogsPage.messageData}
-                            addMessageDialog={props.store.addMessageDialog.bind(props.store)}
                             newDialogMessage={store._state.dialogsPage.newDialogMessage}
-                            changeMessageDialog={props.store.changeMessageDialog.bind(props.store)}
                         />
                     } />
                     <Route path='/news' element={<News />} />
